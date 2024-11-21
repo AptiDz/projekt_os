@@ -1,0 +1,17 @@
+# python -m venv .venv
+# source .venv/Scripts/activate
+# pip install -r requirements. txt
+numpy 
+pandas
+matplotlib
+seaborn
+openpyxl 
+ipykernel
+plotly
+plotly_express
+dash
+python-dotenv
+requests
+dash-bootstrap-components
+numexpr
+bottleneck
