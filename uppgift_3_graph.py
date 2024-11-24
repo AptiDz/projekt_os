@@ -4,15 +4,15 @@ import hashlib as hl
 
 # Variabels for graphs
 
-anon_df = pd.read_csv("athlete_events.csv")
-anon_df["Name"] = anon_df["Name"].apply(lambda name: hl.sha256(name.encode()).hexdigest())
+df = pd.read_csv("athlete_events.csv")
+df["Name"] = df["Name"].apply(lambda name: hl.sha256(name.encode()).hexdigest())
 
-df_gbr = anon_df[anon_df["NOC"] == "GBR"]
+df_gbr = df[df["NOC"] == "GBR"]
 
 sport_medals = df_gbr.groupby("Sport", observed=True)[["Medal"]].count() 
 top_10_sports = sport_medals.sort_values(by="Medal", ascending=False).head(10)
 
-medals = anon_df[anon_df["Medal"].notna()].reset_index(drop=True)
+medals = df[df["Medal"].notna()].reset_index(drop=True)
 
 
 # Graph Medals/Sport
@@ -95,7 +95,7 @@ sport_medals_rugby = sport_medals("Rugby")
 # Graph Idividuals/Age/Football
 
 def sport_age_people(sports):
-    sport = anon_df[anon_df["Sport"] == sports].reset_index(drop=True)
+    sport = df[df["Sport"] == sports].reset_index(drop=True)
     sport = sport.groupby(["Age"]).size().reset_index(name="Age Count")
     fig = px.bar(sport, x="Age", y="Age Count", color="Age", title="Number of individiuals with specific age for " + sports, labels={"Age Count": "Number of athletes"})
     

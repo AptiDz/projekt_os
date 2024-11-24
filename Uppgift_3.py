@@ -51,49 +51,38 @@ def interact_graph(btn1, btn2, btn3, btn4, btn5, btn6, btn7, btn8, btn9, btn10, 
     # id = ctx.triggered returns id.n_clicks (index[0] = id, index[1] = n_clicks)
     id = ctx.triggered[0]["prop_id"].split(".")[0] 
 
-    # id targets the buttons
+    # id checks the condition of of dbc.button id
     if id == "button1":
-        medals_sport
         return medals_sport
 
     elif id == "button2":
-        medals_gbr_os
         return medals_gbr_os
         
     elif id == "button3":
-        participants_ages
         return participants_ages
 
     elif id == "button4":
-        sport_medals_football
         return sport_medals_football
     
     elif id == "button5":
-        sport_medals_swimming
         return sport_medals_swimming
     
     elif id == "button6":
-        sport_medals_boxing
         return sport_medals_boxing
     
     elif id == "button7":
-        sport_medals_rugby
         return sport_medals_rugby
     
     elif id == "button8":
-        sport_age_football
         return sport_age_football
 
     elif id == "button9":
-        sport_age_swimming
         return sport_age_swimming
 
     elif id == "button10":
-        sport_age_boxing
         return sport_age_boxing
 
     elif id == "button11":
-        sport_age_rugby
         return sport_age_rugby
     
     else:
