@@ -62,28 +62,28 @@ def interact_graph(btn1, btn2, btn3, btn4, btn5, btn6, btn7, btn8, btn9, btn10, 
         return participants_ages
 
     elif id == "button4":
-        return sport_medals_football
+        return sport_medals("Football")
     
     elif id == "button5":
-        return sport_medals_swimming
+        return sport_medals("Swimming")
     
     elif id == "button6":
-        return sport_medals_boxing
+        return sport_medals("Boxing")
     
     elif id == "button7":
-        return sport_medals_rugby
+        return sport_medals("Rugby")
     
     elif id == "button8":
-        return sport_age_football
+        return sport_age_people("Football")
 
     elif id == "button9":
-        return sport_age_swimming
+        return sport_age_people("Swimming")
 
     elif id == "button10":
-        return sport_age_boxing
+        return sport_age_people("Boxing")
 
     elif id == "button11":
-        return sport_age_rugby
+        return sport_age_people("Rugby")
     
     else:
         return {}  # At the start of the dash without clicking button results empty figure
