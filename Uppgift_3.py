@@ -31,19 +31,9 @@ app.layout = html.Div(
 # Defining the callbacks
 @app.callback(
     Output("graph", "figure"),  # Targets "figure" property of the graph
-     Input("button1", "n_clicks"),
-    [Input("button2", "n_clicks"),
-     Input("button3", "n_clicks"),
-     Input("button4", "n_clicks"),
-     Input("button5", "n_clicks"),
-     Input("button6", "n_clicks"),
-     Input("button7", "n_clicks"),
-     Input("button8", "n_clicks"),
-     Input("button9", "n_clicks"),
-     Input("button10", "n_clicks"),
-     Input("button11", "n_clicks")]
+    [Input(f"button{i+1}", "n_clicks") for i in range(11)]
 )
-def interact_graph(btn1, btn2, btn3, btn4, btn5, btn6, btn7, btn8, btn9, btn10, btn11):
+def interact_graph(*btns):
     # Determining which button was based on clicks on n_clicks
     ctx = dash.callback_context
     if not ctx.triggered:
