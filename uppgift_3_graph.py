@@ -111,3 +111,7 @@ sport_age_swimming = sport_age_people("Swimming")
 # Graph Idividuals/Age/Boxing
 
 sport_age_boxing = sport_age_people("Boxing")
+
+# Graph Idividuals/Age/Rugby
+
+sport_age_rugby = sport_age_people("Rugby")
