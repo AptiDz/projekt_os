@@ -3,6 +3,7 @@ import pandas as pd
 import hashlib as hl
 
 # Variabels for graphs
+
 anon_df = pd.read_csv("athlete_events.csv")
 anon_df["Name"] = anon_df["Name"].apply(lambda name: hl.sha256(name.encode()).hexdigest())
 
@@ -66,4 +67,17 @@ fig = px.histogram(
 
 fig.update_layout(yaxis_title="Number of Individuals")
 
-participants_ages = fig 
+participants_ages = fig
+
+# Medals/Football/Countries
+
+def sport_medals(sports):
+    
+    sport = medals[medals["Sport"] == sports].reset_index(drop=True)
+    sport = sport.groupby(["NOC", "Medal"]).size().reset_index(name="Medal Count")
+
+    fig = px.bar(sport, x="NOC", y="Medal Count", color="Medal", color_discrete_map = {"Bronze": "tan", "Silver": "silver", "Gold": "gold"}, title="Countries with number of medals for " + sports, labels={"NOC": "Country", "Medal Count": "Number of Medals"})
+
+    return fig
+
+sport_medals_football = sport_medals("Football")
