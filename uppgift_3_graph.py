@@ -2,7 +2,7 @@ import plotly.express as px
 import pandas as pd
 import hashlib as hl
 
-
+# Variabels for graphs
 anon_df = pd.read_csv("athlete_events.csv")
 anon_df["Name"] = anon_df["Name"].apply(lambda name: hl.sha256(name.encode()).hexdigest())
 
@@ -55,5 +55,15 @@ barmode="stack")
 
 medals_gbr_os = fig
 
+# Graph Paticipants/Ages 
 
+fig = px.histogram( 
+    df_gbr,
+    x="Age",
+    nbins=8,
+    title="OS-GBR: Participants Ages",
+    labels={"Age": "Age Bracket", "Count" : "Number of Individuals"})
 
+fig.update_layout(yaxis_title="Number of Individuals")
+
+participants_ages = fig 
