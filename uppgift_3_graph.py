@@ -90,3 +90,16 @@ sport_medals_boxing = sport_medals("Boxing")
 # Medals/Rugby/Countries
 
 sport_medals_rugby = sport_medals("Rugby")
+
+
+# Idividuals/Age/Football
+
+def sport_age_people(sports):
+    sport = anon_df[anon_df["Sport"] == sports].reset_index(drop=True)
+    sport = sport.groupby(["Age"]).size().reset_index(name="Age Count")
+    fig = px.bar(sport, x="Age", y="Age Count", color="Age", title="Number of individiuals with specific age for " + sports, labels={"Age Count": "Number of athletes"})
+    
+    return fig
+  
+sport_age_football = sport_age_people("Football")
+
