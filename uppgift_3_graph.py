@@ -17,9 +17,6 @@ medals = anon_df[anon_df["Medal"].notna()].reset_index(drop=True)
 
 # Graph Medals/Sport
 
-sport_medals = df_gbr.groupby("Sport", observed=True)[["Medal"]].count() 
-top_10_sports = sport_medals.sort_values(by="Medal", ascending=False).head(10)
-
 fig = px.bar(
     top_10_sports,
     x=top_10_sports.index,
@@ -69,7 +66,7 @@ fig.update_layout(yaxis_title="Number of Individuals")
 
 participants_ages = fig
 
-# Medals/Rugby/Countries
+# Medals/Football/Countries
 
 def sport_medals(sports):
     
@@ -79,5 +76,17 @@ def sport_medals(sports):
     fig = px.bar(sport, x="NOC", y="Medal Count", color="Medal", color_discrete_map = {"Bronze": "tan", "Silver": "silver", "Gold": "gold"}, title="Countries with number of medals for " + sports, labels={"NOC": "Country", "Medal Count": "Number of Medals"})
 
     return fig
+
+sport_medals_football = sport_medals("Football")
+
+# Medals/Swimming/Countries
+
+sport_medals_swimming = sport_medals("Swimming")
+
+# Medals/Boxing/Countries
+
+sport_medals_boxing = sport_medals("Boxing")
+
+# Medals/Rugby/Countries
 
 sport_medals_rugby = sport_medals("Rugby")
