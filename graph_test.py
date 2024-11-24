@@ -12,4 +12,4 @@ def sport_age_people(sports):
     
     return fig.show()
   
-sport_age_boxing = sport_age_people("Boxing")
+sport_age_rugby = sport_age_people("Rugby")
