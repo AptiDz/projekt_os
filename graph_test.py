@@ -19,4 +19,4 @@ def sport_medals(sports):
 
     return fig.show()
 
-sport_medals_football = sport_medals("Football")
+sport_medals_swimming = sport_medals("Swimming")
