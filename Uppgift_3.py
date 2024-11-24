@@ -1,42 +1,107 @@
-from dash import Dash, html, Output, Input, dcc
+import dash
+from dash import Dash, html, dcc, Input, Output
 import dash_bootstrap_components as dbc
-import pandas as pd
-import hashlib as hl
-import plotly_express as px
+from uppgift_3_graph import *
 
+# Intializes dash in its darkly theme
+app = Dash(__name__, external_stylesheets=[dbc.themes.DARKLY])
 
-app = Dash(__name__, external_stylesheets = [dbc.themes.BOOTSTRAP])
-
-button = html.Div(
-    [
-        dbc.Button(
-            "Click me", id="example-button", className="me-2", n_clicks=0
+# Defines the layout
+app.layout = html.Div(
+    [html.H1(
+            "Great Britain in OS!", className="mb-5",
         ),
-        html.Span(id="example-output", style={"verticalAlign": "middle"}),
-    ]
+        dbc.Button("Medals/Sport", id="button1", className="me-2 mb-5", n_clicks=0),
+        dbc.Button("Medals/GBR/OS", id="button2", className="me-2 mb-5", n_clicks=0),
+        dbc.Button("Participants/Ages", id="button3", className="me-2 mb-5", n_clicks=0),
+        dbc.Button("Medals/Football/Countries", id="button4", className="me-2 mb-5", n_clicks=0),
+        dbc.Button("Medals/Swimming/Countries", id="button5", className="me-2 mb-5", n_clicks=0),
+        dbc.Button("Medals/Boxing/Countries", id="button6", className="me-2 mb-5", n_clicks=0),
+        dbc.Button("Medals/Rugby/Countries", id="button7", className="me-2 mb-5", n_clicks=0),
+        dbc.Button("Individuals/Age/Football", id="button8", className="me-2 mb-5", n_clicks=0),
+        dbc.Button("Individuals/Age/Swimming", id="button9", className="me-2 mb-5", n_clicks=0),
+        dbc.Button("Individuals/Age/Boxing", id="button10", className="me-2 mb-5", n_clicks=0),
+        dbc.Button("Individuals/Age/Rugby", id="button11", className="me-2 mb-5", n_clicks=0),
+        html.Div(
+            dcc.Graph(id="graph")  # The graph updates dynamically
+        ),
+    ], className="m-5" # m is margin where each number represants 16 pixels
 )
 
-
+# Defining the callbacks
 @app.callback(
-    Output("example-output", "children"), [Input("example-button", "n_clicks")]
+    Output("graph", "figure"),  # Targets "figure" property of the graph
+     Input("button1", "n_clicks"),
+    [Input("button2", "n_clicks"),
+     Input("button3", "n_clicks"),
+     Input("button4", "n_clicks"),
+     Input("button5", "n_clicks"),
+     Input("button6", "n_clicks"),
+     Input("button7", "n_clicks"),
+     Input("button8", "n_clicks"),
+     Input("button9", "n_clicks"),
+     Input("button10", "n_clicks"),
+     Input("button11", "n_clicks")]
 )
-def on_button_click(n):
-    if n is None:
-        return "Not clicked."
-    else:
-        return f"Clicked {n} times."
+def interact_graph(btn1, btn2, btn3, btn4, btn5, btn6, btn7, btn8, btn9, btn10, btn11):
+    # Determining which button was based on clicks on n_clicks
+    ctx = dash.callback_context
+    if not ctx.triggered:
+        return {}  # Returns the empty figure by default
+    # id = ctx.triggered returns id.n_clicks (index[0] = id, index[1] = n_clicks)
+    id = ctx.triggered[0]["prop_id"].split(".")[0] 
 
-app.layout = html.Div([
-   html.H1(
-            "Welcome to our Dashboard!",
-        ) , button, 
-   html.Div(dcc.Graph(id="graph"))
-])
+    # id targets the buttons
+    if id == "button1":
+        medals_sport
+        return medals_sport
 
-if __name__ == "__main__":
-    app.run(debug=True)
+    elif id == "button2":
+        medals_gbr_os
+        return medals_gbr_os
+        
+    elif id == "button3":
+        participants_ages
+        return participants_ages
+
+    elif id == "button4":
+        sport_medals_football
+        return sport_medals_football
     
+    elif id == "button5":
+        sport_medals_swimming
+        return sport_medals_swimming
+    
+    elif id == "button6":
+        sport_medals_boxing
+        return sport_medals_boxing
+    
+    elif id == "button7":
+        sport_medals_rugby
+        return sport_medals_rugby
+    
+    elif id == "button8":
+        sport_age_football
+        return sport_age_football
 
+    elif id == "button9":
+        sport_age_swimming
+        return sport_age_swimming
+
+    elif id == "button10":
+        sport_age_boxing
+        return sport_age_boxing
+
+    elif id == "button11":
+        sport_age_rugby
+        return sport_age_rugby
+    
+    else:
+        return {}  # At the start of the dash without clicking button results empty figure
+
+# Runs the dash
+if __name__ == "__main__":
+    app.run_server(debug=True)
     
     
 """
