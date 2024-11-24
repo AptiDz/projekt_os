@@ -69,7 +69,7 @@ fig.update_layout(yaxis_title="Number of Individuals")
 
 participants_ages = fig
 
-# Medals/Swimming/Countries
+# Medals/Boxing/Countries
 
 def sport_medals(sports):
     
@@ -80,4 +80,4 @@ def sport_medals(sports):
 
     return fig
 
-sport_medals_swimming = sport_medals("Swimming")
+sport_medals_boxing = sport_medals("Boxing")
