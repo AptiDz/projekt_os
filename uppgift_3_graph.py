@@ -66,7 +66,7 @@ fig.update_layout(yaxis_title="Number of Individuals")
 
 participants_ages = fig
 
-# Medals/Football/Countries
+# Graph Medals/Football/Countries
 
 def sport_medals(sports):
     
@@ -79,20 +79,20 @@ def sport_medals(sports):
 
 sport_medals_football = sport_medals("Football")
 
-# Medals/Swimming/Countries
+# Graph Medals/Swimming/Countries
 
 sport_medals_swimming = sport_medals("Swimming")
 
-# Medals/Boxing/Countries
+# Graph Medals/Boxing/Countries
 
 sport_medals_boxing = sport_medals("Boxing")
 
-# Medals/Rugby/Countries
+# Graph Medals/Rugby/Countries
 
 sport_medals_rugby = sport_medals("Rugby")
 
 
-# Idividuals/Age/Football
+# Graph Idividuals/Age/Football
 
 def sport_age_people(sports):
     sport = anon_df[anon_df["Sport"] == sports].reset_index(drop=True)
@@ -103,3 +103,11 @@ def sport_age_people(sports):
   
 sport_age_football = sport_age_people("Football")
 
+
+# Graph Idividuals/Age/Swimming
+
+sport_age_swimming = sport_age_people("Swimming")
+
+# Graph Idividuals/Age/Boxing
+
+sport_age_boxing = sport_age_people("Boxing")
