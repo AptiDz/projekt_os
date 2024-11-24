@@ -7,15 +7,16 @@ anon_df["Name"] = anon_df["Name"].apply(lambda name: hl.sha256(name.encode()).he
 
 
 
-df_gbr = anon_df[anon_df["NOC"] == "GBR"]
 
-fig = px.histogram(
-    df_gbr,
-    x="Age",
-    nbins=8,
-    title="OS-GBR: Participants Ages",
-    labels={"Age": "Age Bracket", "Count" : "Number of Individuals"})
+medals = anon_df[anon_df["Medal"].notna()].reset_index(drop=True)
 
-fig.update_layout(yaxis_title="Number of Individuals")
+def sport_medals(sports):
+    
+    sport = medals[medals["Sport"] == sports].reset_index(drop=True)
+    sport = sport.groupby(["NOC", "Medal"]).size().reset_index(name="Medal Count")
 
-fig.show()
+    fig = px.bar(sport, x="NOC", y="Medal Count", color="Medal", color_discrete_map = {"Bronze": "tan", "Silver": "silver", "Gold": "gold"}, title="Countries with number of medals for " + sports, labels={"NOC": "Country", "Medal Count": "Number of Medals"})
+
+    return fig.show()
+
+sport_medals_football = sport_medals("Football")
