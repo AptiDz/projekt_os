@@ -5,18 +5,12 @@ import hashlib as hl
 anon_df = pd.read_csv("athlete_events.csv")
 anon_df["Name"] = anon_df["Name"].apply(lambda name: hl.sha256(name.encode()).hexdigest())
 
-
-
-
-medals = anon_df[anon_df["Medal"].notna()].reset_index(drop=True)
-
-def sport_medals(sports):
+def sport_age_people(sports):
+    sport = anon_df[anon_df["Sport"] == sports].reset_index(drop=True)
+    sport = sport.groupby(["Age"]).size().reset_index(name="Age Count")
+    fig = px.bar(sport, x="Age", y="Age Count", color="Age", title="Number of individiuals with specific age for " + sports, labels={"Age Count": "Number of athletes"})
     
-    sport = medals[medals["Sport"] == sports].reset_index(drop=True)
-    sport = sport.groupby(["NOC", "Medal"]).size().reset_index(name="Medal Count")
-
-    fig = px.bar(sport, x="NOC", y="Medal Count", color="Medal", color_discrete_map = {"Bronze": "tan", "Silver": "silver", "Gold": "gold"}, title="Countries with number of medals for " + sports, labels={"NOC": "Country", "Medal Count": "Number of Medals"})
 
     return fig.show()
 
-sport_medals_rugby = sport_medals("Rugby")
+sport_age_swimming = sport_age_people("Swimming")
