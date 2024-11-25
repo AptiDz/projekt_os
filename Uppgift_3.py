@@ -6,6 +6,9 @@ from uppgift_3_graph import *
 # Intializes dash in its darkly theme
 app = Dash(__name__, external_stylesheets=[dbc.themes.DARKLY])
 
+# Server to get it running in render
+server = app.server
+
 # Defines the layout
 app.layout = html.Div(
     [html.H1(
