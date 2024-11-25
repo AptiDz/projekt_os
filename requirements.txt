@@ -16,3 +16,4 @@ dash-bootstrap-components
 numexpr
 bottleneck
 nbformat
+gunicorn
